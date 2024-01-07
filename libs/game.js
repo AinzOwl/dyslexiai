@@ -56,21 +56,19 @@ const gameLib = {
       };
     
     // Initialize the JsonDB instance with the path to your JSON file
-    const dad = new JsonDB(path.join(__dirname, '..', 'db', 'dad.json'), defaultDadData);
-    const stt = new JsonDB(path.join(__dirname, '..', 'db', 'stt.json'), defaultSttData);
-    
+    const dadDb = new JsonDB(path.join(__dirname, '..', 'db', 'dad.json'));
+    const sttDb = new JsonDB(path.join(__dirname, '..', 'db', 'stt.json'));
     
     // Load the game data for the specified type
     let gameData;
     if (type === 'dad') {
-        gameData = dad.data["drag-and-drop"];
+        gameData = dadDb.get("dad"); // Get the "dad" array from dad.json
     } else if (type === 'stt') {
-        gameData = stt.data["speech-to-text"];
+        gameData = sttDb.get("stt"); // Get the "stt" array from stt.json
     } else {
         return res.status(404).json({ error: 'Game type not found' });
     }
-
-
+    
     // Select the game level for the user
     const userLevel = user.level || 1; // Default to level 1 if not specified
     const gameLevelData = gameData.find(game => game.level === userLevel.toString());

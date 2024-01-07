@@ -12,6 +12,15 @@
       "averageTime": 0,
       "level": 4,
       "gameType": "stt"
+    },
+    "39fea088-a972-4d7e-8f48-c3bb5109d8f0": {
+      "uuid": "39fea088-a972-4d7e-8f48-c3bb5109d8f0",
+      "username": "ainz",
+      "rightAnswers": 0,
+      "wrongAnswers": 0,
+      "successRate": 0,
+      "averageTime": 0,
+      "level": 0
     }
   }
 }

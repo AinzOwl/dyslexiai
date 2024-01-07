@@ -16,11 +16,12 @@
     "39fea088-a972-4d7e-8f48-c3bb5109d8f0": {
       "uuid": "39fea088-a972-4d7e-8f48-c3bb5109d8f0",
       "username": "ainz",
-      "rightAnswers": 0,
+      "rightAnswers": 2,
       "wrongAnswers": 0,
-      "successRate": 0,
+      "successRate": 100,
       "averageTime": 0,
-      "level": 0
+      "level": 1,
+      "gameType": "dad"
     }
   }
 }

@@ -22,6 +22,7 @@ const userLib = {
       successRate: 0,
       averageTime: 0,
       level: 0,
+      gameType: "dad"
     };
 
     // Save the new user to the database

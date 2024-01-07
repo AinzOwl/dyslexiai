@@ -82,7 +82,8 @@ const checkLib = {
           rightAnswers: user.rightAnswers,
           wrongAnswers: user.wrongAnswers,
           successRate: user.successRate,
-          timestamp: new Date().toISOString() // Include a timestamp for the entry
+          timestamp: new Date().toISOString(),
+          answers: userAnswers
         };
   
         // Generate a unique key for each entry, such as a timestamp or a combination of userId and timestamp

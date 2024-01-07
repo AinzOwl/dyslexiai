@@ -1,9 +1,6 @@
 // game.js in the /libs directory
 const path = require('path');
-
-// Initialize the JsonDB instance with the path to your JSON file
-const dad = new JsonDB(path.join(__dirname, '..', 'db', 'dad.json'));
-const stt = new JsonDB(path.join(__dirname, '..', 'db', 'stt.json'));
+const JsonDB = require(__dirname + '/../db.js');
 
 const gameLib = {
   get: (req, res, db) => {
@@ -20,15 +17,59 @@ const gameLib = {
       return res.status(404).json({ error: 'User not found' });
     }
 
+    const defaultDadData = {
+        "drag-and-drop": [
+            {
+                "level": "0",
+                "type": "dad",
+                "images": [
+                  {
+                    "src": "assets/images/sun.png",
+                    "alt": "_un",
+                    "word": "Sun"
+                  },
+                  {
+                    "src": "assets/images/bun.png",
+                    "alt": "_un",
+                    "word": "Bun"
+                  }
+                ],
+                "letters": [
+                  {
+                    "static": ["u"],
+                    "draggable": ["B", "S"]
+                  }
+                ]
+              }
+        ]
+      };
+      
+      // Define default game data for speech-to-text
+      const defaultSttData = {
+        "speech-to-text": [
+            {
+                "level": "1",
+                "type": "stt",
+                "word": "dog"
+            }
+        ]
+      };
+    
+    // Initialize the JsonDB instance with the path to your JSON file
+    const dad = new JsonDB(path.join(__dirname, '..', 'db', 'dad.json'), defaultDadData);
+    const stt = new JsonDB(path.join(__dirname, '..', 'db', 'stt.json'), defaultSttData);
+    
+    
     // Load the game data for the specified type
-    if (type != 'dad') {
-        const gameData = dad.data[type];
+    let gameData;
+    if (type === 'dad') {
+        gameData = dad.data["drag-and-drop"];
     } else if (type === 'stt') {
-        const gameData = stt.data[type];
-    }
-    else {
+        gameData = stt.data["speech-to-text"];
+    } else {
         return res.status(404).json({ error: 'Game type not found' });
     }
+
 
     // Select the game level for the user
     const userLevel = user.level || 1; // Default to level 1 if not specified

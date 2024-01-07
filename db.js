@@ -2,8 +2,9 @@ const fs = require('fs');
 const path = require('path');
 
 class JsonDB {
-  constructor(filename) {
+  constructor(filename, defaultData = {}) {
     this.filename = filename;
+    this.defaultData = defaultData;
     this.ensureFileExists();
     this.data = this.readData();
   }
@@ -11,7 +12,9 @@ class JsonDB {
   ensureFileExists() {
     // Check if the file exists
     if (!fs.existsSync(this.filename)) {
-      fs.writeFileSync(this.filename, JSON.stringify({}, null, 2), 'utf-8');
+      // Use default data if provided, otherwise an empty object
+      const dataToWrite = Object.keys(this.defaultData).length > 0 ? this.defaultData : {};
+      fs.writeFileSync(this.filename, JSON.stringify(dataToWrite, null, 2), 'utf-8');
     }
   }
 
@@ -21,7 +24,8 @@ class JsonDB {
       return JSON.parse(fileContents);
     } catch (err) {
       console.error('Error reading the data file:', err);
-      return {}; // Return an empty object if there's an error reading the file
+      // Return default data if there's an error reading the file
+      return this.defaultData;
     }
   }
 
@@ -49,8 +53,14 @@ class JsonDB {
   }
 
   get(collection, key) {
-    if (this.data[collection]) {
-      return this.data[collection][key];
+    const collectionData = this.data[collection];
+    if (collectionData) {
+      if (key) {
+        return collectionData[key];
+      } else {
+        // If no key is provided, return the entire collection
+        return collectionData;
+      }
     }
     return null;
   }

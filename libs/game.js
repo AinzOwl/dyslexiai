@@ -62,20 +62,21 @@ const gameLib = {
     // Load the game data for the specified type
     let gameData;
     if (type === 'dad') {
-        gameData = dadDb.get("dad"); // Get the "dad" array from dad.json
+        gameData = dadDb.get("dad");
     } else if (type === 'stt') {
-        gameData = sttDb.get("stt"); // Get the "stt" array from stt.json
+        gameData = sttDb.get("stt");
     } else {
         return res.status(404).json({ error: 'Game type not found' });
     }
     
     // Select the game level for the user
-    const userLevel = user.level || 1; // Default to level 1 if not specified
-    const gameLevelData = gameData.find(game => game.level === userLevel.toString());
+    const userLevel = user.level || 0; // Default to level 0 if not specified
+    const gameLevelData = gameData.find(game => parseInt(game.level) === userLevel);
 
     if (!gameLevelData) {
-      return res.status(404).json({ error: 'Game level not found' });
+    return res.status(404).json({ error: 'Game level not found' });
     }
+
 
     // Return the game level data
     res.json(gameLevelData);

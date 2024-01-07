@@ -1,9 +1,30 @@
 {
   "stt": [
     {
-      "level": "1",
+      "level": "5",
+      "type": "stt",
+      "word": "cat"
+    },
+    {
+      "level": "6",
+      "type": "stt",
+      "word": "Ham"
+    },
+    {
+      "level": "7",
+      "type": "stt",
+      "word": "Sun"
+    },
+    {
+      "level": "7",
+      "type": "stt",
+      "word": "Cup"
+    },
+    {
+      "level": "8",
       "type": "stt",
       "word": "dog"
     }
+
   ]
 }

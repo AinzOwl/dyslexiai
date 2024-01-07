@@ -1,0 +1,16 @@
+{
+  "ping": {
+    "pong": "test"
+  },
+  "users": {
+    "8db93a7e-6d3b-407f-95c4-bbfd1e8e89b3": {
+      "uuid": "8db93a7e-6d3b-407f-95c4-bbfd1e8e89b3",
+      "username": "ainz",
+      "rightAnswers": 0,
+      "wrongAnswers": 0,
+      "successRate": 0,
+      "averageTime": 0,
+      "level": 0
+    }
+  }
+}
